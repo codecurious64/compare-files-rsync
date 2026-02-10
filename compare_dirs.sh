@@ -4,7 +4,7 @@ set -euo pipefail
 # Configuration
 SRC="/path/to/primary-documents"      # authoritative source
 DST="/path/to/backup-disk/documents"  # backup destination
-OUT="comparison_$(date +%d%m%Y-%H%M%S).csv"
+OUT="comparison_$(date +%Y%m%d-%H%M%S).csv"
 
 # Exclusions: hidden folders and common junk / temp files
 RSYNC_EXCLUDES=(
