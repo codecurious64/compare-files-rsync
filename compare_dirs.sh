@@ -61,10 +61,19 @@ BEGIN {
 }
 
 END {
+  print "# ------------------------------------------------------------"
   print "# SUMMARY"
+  print "# ------------------------------------------------------------"
   print "# total_differences," total
   for (t in count)
     print "# " t "," count[t]
+
+  print ""
+  print "# ------------------------------------------------------------"
+  print "# CONTEXT"
+  print "# ------------------------------------------------------------"
+  print "# source_path," ENVIRON["SRC"]
+  print "# destination_path," ENVIRON["DST"]
 }
 ' >> "$OUT"
 
