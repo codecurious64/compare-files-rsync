@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# ------------------------------------------------------------
 # Configuration
-# ------------------------------------------------------------
-
 SRC="/path/to/primary-documents"      # authoritative source
 DST="/path/to/backup-disk/documents"  # backup destination
 OUT="comparison_$(date +%d%m%Y-%H%M%S).csv"
@@ -17,16 +14,13 @@ RSYNC_EXCLUDES=(
   --exclude='*.temp'
 )
 
-# ------------------------------------------------------------
 # Write CSV header
-# ------------------------------------------------------------
-
 echo "relative_path,change_type,authoritative_side" > "$OUT"
 
-# ------------------------------------------------------------
-# Run rsync dry-run comparison and process output
-# ------------------------------------------------------------
+# Export SRC and DST for awk access
+export SRC DST
 
+# Run rsync dry-run comparison and process output
 rsync -ain --delete \
   "${RSYNC_EXCLUDES[@]}" \
   "${SRC}/" "${DST}/" |
